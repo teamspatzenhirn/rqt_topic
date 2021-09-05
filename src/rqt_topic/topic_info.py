@@ -38,6 +38,7 @@
 from python_qt_binding.QtCore import qWarning
 from ros2topic.verb.hz import ROSTopicHz
 from rqt_py_common.message_helpers import get_message_class
+from rclpy.qos import qos_profile_sensor_data
 
 
 class TopicInfo(ROSTopicHz):
@@ -80,7 +81,7 @@ class TopicInfo(ROSTopicHz):
             self.monitoring = True
             self._subscriber = self._node.create_subscription(
                 self.message_class, self._topic_name, self.message_callback,
-                qos_profile=10)
+                qos_profile=qos_profile_sensor_data)
 
     def stop_monitoring(self):
         self.monitoring = False
